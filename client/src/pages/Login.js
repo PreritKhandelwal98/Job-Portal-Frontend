@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import InputForm from '../components/shared/InputForm';
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      console.log(email, password);
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <>
       <div className="form-container">
-        <form className="card p-2">
+        <form className="card p-2" onSubmit={handleSubmit}>
           <img src="/assets/images/logo/logo.png" height={150}
             width={400}
             alt="logo" />
-          <div className="mb-1">
-            <label htmlFor="email" className="form-label">Email address</label>
-            <input type="email" className="form-control" name="email" />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" name="password" />
-          </div>
+          <InputForm htmlFor="email" labelText={'Email'} type={'email'} value={email} handleChange={(e) => setEmail(e.target.value)} name="email" />
+          <InputForm htmlFor="password" labelText={'Password'} type={'password'} value={password} handleChange={(e) => setPassword(e.target.value)} name="password" />
           <div className="d-flex">
             <p>Do not have Account? <Link to="/register"><i>Cleck Here</i></Link></p>
           </div>

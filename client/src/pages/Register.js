@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import InputForm from '../components/shared/InputForm';
 const Register = () => {
-  const [name, SetName] = useState("");
-  const [lastName, SetLastName] = useState("");
-  const [email, SetEmail] = useState("");
-  const [password, SetPassword] = useState("");
+  const [name, setName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,30 +22,12 @@ const Register = () => {
           <img src="/assets/images/logo/logo.png" height={150}
             width={400}
             alt="logo" />
-          <div className="mb-1">
-            <label htmlFor="name" className="form-label">Name</label>
-            <input type="text" className="form-control" name="name" value={name} onChange={(e) => {
-              SetName(e.target.value)
-            }} />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="name" className="form-label">Last Name</label>
-            <input type="text" className="form-control" name="lastName" value={lastName} onChange={(e) => {
-              SetLastName(e.target.value)
-            }} />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="email" className="form-label">Email address</label>
-            <input type="email" className="form-control" name="email" value={email} onChange={(e) => {
-              SetEmail(e.target.value)
-            }} />
-          </div>
-          <div className="mb-1">
-            <label htmlFor="password" className="form-label">Password</label>
-            <input type="password" className="form-control" name="password" value={password} onChange={(e) => {
-              SetPassword(e.target.value)
-            }} />
-          </div>
+          <InputForm htmlFor="name" labelText={'Name'} type={'text'} value={name} handleChange={(e) => setName(e.target.value)} name="name" />
+          <InputForm htmlFor="lastName" labelText={'Last Name'} type={'text'} value={lastName} handleChange={(e) => setLastName(e.target.value)} name="lastName" />
+          <InputForm htmlFor="email" labelText={'Email'} type={'email'} value={email} handleChange={(e) => setEmail(e.target.value)} name="email" />
+          <InputForm htmlFor="password" labelText={'Password'} type={'password'} value={password} handleChange={(e) => setPassword(e.target.value)} name="password" />
+
+
           <div className="d-flex">
             <p>Already Have Account? <Link to="/login"><i>Cleck Here</i></Link></p>
           </div>
